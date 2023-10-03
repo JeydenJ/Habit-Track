@@ -13,7 +13,7 @@ struct Habit_TrackApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

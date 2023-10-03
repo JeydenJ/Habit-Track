@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39F596362ACC1767008FE18C /* Habit_TrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596352ACC1767008FE18C /* Habit_TrackApp.swift */; };
-		39F596382ACC1767008FE18C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596372ACC1767008FE18C /* ContentView.swift */; };
+		39F596382ACC1767008FE18C /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596372ACC1767008FE18C /* StartView.swift */; };
 		39F5963A2ACC1768008FE18C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F596392ACC1768008FE18C /* Assets.xcassets */; };
 		39F5963D2ACC1768008FE18C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F5963C2ACC1768008FE18C /* Preview Assets.xcassets */; };
 		39F5963F2ACC1768008FE18C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5963E2ACC1768008FE18C /* Persistence.swift */; };
@@ -16,6 +16,7 @@
 		39F5964D2ACC1768008FE18C /* Habit_TrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5964C2ACC1768008FE18C /* Habit_TrackTests.swift */; };
 		39F596572ACC1768008FE18C /* Habit_TrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596562ACC1768008FE18C /* Habit_TrackUITests.swift */; };
 		39F596592ACC1768008FE18C /* Habit_TrackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596582ACC1768008FE18C /* Habit_TrackUITestsLaunchTests.swift */; };
+		39F596662ACC1F23008FE18C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596652ACC1F23008FE18C /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		39F596322ACC1767008FE18C /* Habit Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F596352ACC1767008FE18C /* Habit_TrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackApp.swift; sourceTree = "<group>"; };
-		39F596372ACC1767008FE18C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		39F596372ACC1767008FE18C /* StartView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		39F596392ACC1768008FE18C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39F5963C2ACC1768008FE18C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		39F5963E2ACC1768008FE18C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		39F596522ACC1768008FE18C /* Habit TrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit TrackUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F596562ACC1768008FE18C /* Habit_TrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackUITests.swift; sourceTree = "<group>"; };
 		39F596582ACC1768008FE18C /* Habit_TrackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39F596652ACC1F23008FE18C /* MainView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +101,9 @@
 		39F596342ACC1767008FE18C /* Habit Track */ = {
 			isa = PBXGroup;
 			children = (
+				39F596652ACC1F23008FE18C /* MainView.swift */,
 				39F596352ACC1767008FE18C /* Habit_TrackApp.swift */,
-				39F596372ACC1767008FE18C /* ContentView.swift */,
+				39F596372ACC1767008FE18C /* StartView.swift */,
 				39F596392ACC1768008FE18C /* Assets.xcassets */,
 				39F5963E2ACC1768008FE18C /* Persistence.swift */,
 				39F596432ACC1768008FE18C /* Info.plist */,
@@ -267,7 +270,8 @@
 			files = (
 				39F596422ACC1768008FE18C /* Habit_Track.xcdatamodeld in Sources */,
 				39F5963F2ACC1768008FE18C /* Persistence.swift in Sources */,
-				39F596382ACC1767008FE18C /* ContentView.swift in Sources */,
+				39F596382ACC1767008FE18C /* StartView.swift in Sources */,
+				39F596662ACC1F23008FE18C /* MainView.swift in Sources */,
 				39F596362ACC1767008FE18C /* Habit_TrackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
