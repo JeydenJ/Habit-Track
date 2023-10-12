@@ -10,24 +10,46 @@ import SwiftUI
 struct MainView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    var body: some View {
-        VStack {
+    @State private var showHabitView = false // A boolean state to control navigation to HabitView
         
-            Button(action: {
+        var body: some View {
+            NavigationView {
+                VStack {
+                    Text("Habit Track")
+                        .font(.largeTitle)
+                        .padding()
+                        
+                    Button(action: {
+                        self.showHabitView = true
+                    }) {
+                        
+                        Text("Habits")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                        .cornerRadius(8)
+                        
+                    }
+                    
+                    NavigationLink("", destination: HabitView(), isActive: $showHabitView)
+                                        .opacity(0)
                 
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Exit")
-                    .font(.headline)
-                    .foregroundColor(.red)
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Logout")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
+                .padding()
+                
             }
-            .padding()
         }
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
+            .navigationBarBackButtonHidden(true)
     }
 }
