@@ -9,9 +9,11 @@ import SwiftUI
 import CoreData
 
 struct StartView: View {
+    @EnvironmentObject var habitDatabase: HabitDatabase
     @State private var userName = ""
     @State private var isProceeding = false
-    
+    @State private var nameError: String? // To store the error message
+
     var body: some View {
         NavigationView {
             VStack {
@@ -26,8 +28,22 @@ struct StartView: View {
                 TextField("Name", text: $userName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-            
-                NavigationLink(destination: MainView()) {
+                
+                if let error = nameError {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .padding()
+                }
+                
+                // Navigation to MainView with validation
+                NavigationLink(destination: MainView(), isActive: $isProceeding) {
+                    EmptyView()
+                }
+                
+                Button(action: {
+                    
+                    validateName()
+                }) {
                     Text("Proceed")
                         .font(.headline)
                         .padding()
@@ -39,7 +55,17 @@ struct StartView: View {
                 .padding()
             }
             .padding()
-            
+        }
+    }
+    
+    private func validateName() {
+        if userName.isEmpty {
+            nameError = "Please enter your name."
+        } else if userName.count > 20 {
+            nameError = "Name is too long."
+        } else {
+            nameError = nil
+            isProceeding = true
         }
     }
     

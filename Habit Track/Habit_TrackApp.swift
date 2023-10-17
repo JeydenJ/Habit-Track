@@ -9,12 +9,18 @@ import SwiftUI
 
 @main
 struct Habit_TrackApp: App {
+    @StateObject var habitList = HabitList()
+    @StateObject var habitDatabase = HabitDatabase()
     let persistenceController = PersistenceController.shared
 
+    
+    
     var body: some Scene {
         WindowGroup {
             StartView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(habitList)
+                .environmentObject(habitDatabase)
         }
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var showHabitView = false // A boolean state to control navigation to HabitView
+    @State private var showHabitView = false 
         
         var body: some View {
             NavigationView {
@@ -18,7 +18,7 @@ struct MainView: View {
                     Text("Habit Track")
                         .font(.largeTitle)
                         .padding()
-                        
+                        // Navigate to HabitView when the habits button is pressed
                     Button(action: {
                         self.showHabitView = true
                     }) {
@@ -34,7 +34,7 @@ struct MainView: View {
                     
                     NavigationLink("", destination: HabitView(), isActive: $showHabitView)
                                         .opacity(0)
-                
+                // Logout button
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {

@@ -10,27 +10,34 @@ import XCTest
 
 final class Habit_TrackTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    var habitList: HabitList!
+        
+        override func setUp() {
+            super.setUp()
+            habitList = HabitList()
         }
-    }
 
-}
+        override func tearDown() {
+            habitList = nil
+            super.tearDown()
+        }
+
+        func testHabitCreation() {
+            // Create a test habit
+            let habit = Habit(name: "Test Habit", color: "Blue", frequency: "Daily", reminderTime: Date(), isCompleted: false)
+            
+            // Add the habit to the habitList
+            habitList.habits.append(habit)
+            
+            // Assert that the habit was added to the list
+            XCTAssertEqual(habitList.habits.count, 1)
+            
+            // Assert that the habit's properties match the expected values
+            XCTAssertEqual(habitList.habits[0].name, "Test Habit")
+            XCTAssertEqual(habitList.habits[0].color, "Blue")
+            XCTAssertEqual(habitList.habits[0].frequency, "Daily")
+            XCTAssertFalse(habitList.habits[0].isCompleted)
+        }
+
+        
+    }

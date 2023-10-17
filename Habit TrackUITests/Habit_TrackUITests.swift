@@ -7,35 +7,48 @@
 
 import XCTest
 
-final class Habit_TrackUITests: XCTestCase {
+class Habit_TrackUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false // Stop the test on the first failure.
+        app = XCUIApplication()
+        app.launch() // Launch the app before each test.
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testAddHabit() {
+        // Perform UI actions to add a habit.
+        let addHabitButton = app.buttons["Add Habit"]
+        addHabitButton.tap()
+        
+        let habitNameTextField = app.textFields["Habit Name"]
+        habitNameTextField.tap()
+        habitNameTextField.typeText("New Habit")
+        
+        // You can continue performing UI actions to set up a habit here.
+        
+        // Save the habit.
+        let confirmButton = app.buttons["Confirm Habit"]
+        confirmButton.tap()
+        
+        // Verify that the habit was added.
+        let habitCell = app.staticTexts["New Habit"]
+        XCTAssertTrue(habitCell.exists)
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testMarkHabitAsCompleted() {
+        // Perform UI actions to mark a habit as completed.
+        // You can use the "View Habits" button to navigate to the list of habits and then mark a habit as completed.
+        
+        // Verify that the habit is marked as completed.
+        let completedHabitCell = app.staticTexts["New Habit"]
+        XCTAssertTrue(completedHabitCell.exists)
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    override func tearDown() {
+        super.tearDown()
+        // You can perform cleanup actions here, such as resetting the app's state.
     }
 }

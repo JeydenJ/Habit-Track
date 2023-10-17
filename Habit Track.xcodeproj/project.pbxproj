@@ -10,6 +10,10 @@
 		3926C36C2AD7C04B004B72CE /* AddHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926C36B2AD7C04B004B72CE /* AddHabit.swift */; };
 		3926C36E2AD7C082004B72CE /* HabitList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926C36D2AD7C082004B72CE /* HabitList.swift */; };
 		393CCCF12ACEAFD20066626B /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393CCCF02ACEAFD20066626B /* HabitView.swift */; };
+		39505D392ADCF54200A07066 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 39505D382ADCF54200A07066 /* SQLite */; };
+		39505D3B2ADCF66100A07066 /* HabitDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39505D3A2ADCF66100A07066 /* HabitDatabase.swift */; };
+		39A455502AD947F900CC3A66 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A4554F2AD947F900CC3A66 /* LocationView.swift */; };
+		39A455522AD94D8100CC3A66 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A455512AD94D8100CC3A66 /* AddLocationView.swift */; };
 		39F596362ACC1767008FE18C /* Habit_TrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596352ACC1767008FE18C /* Habit_TrackApp.swift */; };
 		39F596382ACC1767008FE18C /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F596372ACC1767008FE18C /* StartView.swift */; };
 		39F5963A2ACC1768008FE18C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F596392ACC1768008FE18C /* Assets.xcassets */; };
@@ -43,6 +47,9 @@
 		3926C36B2AD7C04B004B72CE /* AddHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabit.swift; sourceTree = "<group>"; };
 		3926C36D2AD7C082004B72CE /* HabitList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitList.swift; sourceTree = "<group>"; };
 		393CCCF02ACEAFD20066626B /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
+		39505D3A2ADCF66100A07066 /* HabitDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDatabase.swift; sourceTree = "<group>"; };
+		39A4554F2AD947F900CC3A66 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		39A455512AD94D8100CC3A66 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 		39F596322ACC1767008FE18C /* Habit Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F596352ACC1767008FE18C /* Habit_TrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackApp.swift; sourceTree = "<group>"; };
 		39F596372ACC1767008FE18C /* StartView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -64,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39505D392ADCF54200A07066 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +115,9 @@
 		39F596342ACC1767008FE18C /* Habit Track */ = {
 			isa = PBXGroup;
 			children = (
+				39505D3A2ADCF66100A07066 /* HabitDatabase.swift */,
+				39A455512AD94D8100CC3A66 /* AddLocationView.swift */,
+				39A4554F2AD947F900CC3A66 /* LocationView.swift */,
 				3926C36D2AD7C082004B72CE /* HabitList.swift */,
 				3926C36B2AD7C04B004B72CE /* AddHabit.swift */,
 				393CCCF02ACEAFD20066626B /* HabitView.swift */,
@@ -163,6 +174,9 @@
 			dependencies = (
 			);
 			name = "Habit Track";
+			packageProductDependencies = (
+				39505D382ADCF54200A07066 /* SQLite */,
+			);
 			productName = "Habit Track";
 			productReference = 39F596322ACC1767008FE18C /* Habit Track.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +249,9 @@
 				Base,
 			);
 			mainGroup = 39F596292ACC1767008FE18C;
+			packageReferences = (
+				39505D372ADCF54200A07066 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = 39F596332ACC1767008FE18C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -279,11 +296,14 @@
 			files = (
 				39F596422ACC1768008FE18C /* Habit_Track.xcdatamodeld in Sources */,
 				3926C36C2AD7C04B004B72CE /* AddHabit.swift in Sources */,
+				39505D3B2ADCF66100A07066 /* HabitDatabase.swift in Sources */,
 				39F5963F2ACC1768008FE18C /* Persistence.swift in Sources */,
 				39F596382ACC1767008FE18C /* StartView.swift in Sources */,
 				393CCCF12ACEAFD20066626B /* HabitView.swift in Sources */,
 				39F596662ACC1F23008FE18C /* MainView.swift in Sources */,
 				3926C36E2AD7C082004B72CE /* HabitList.swift in Sources */,
+				39A455522AD94D8100CC3A66 /* AddLocationView.swift in Sources */,
+				39A455502AD947F900CC3A66 /* LocationView.swift in Sources */,
 				39F596362ACC1767008FE18C /* Habit_TrackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,6 +629,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39505D372ADCF54200A07066 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39505D382ADCF54200A07066 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39505D372ADCF54200A07066 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		39F596402ACC1768008FE18C /* Habit_Track.xcdatamodeld */ = {
