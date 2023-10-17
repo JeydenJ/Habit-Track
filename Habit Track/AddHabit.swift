@@ -15,8 +15,13 @@ struct AddHabit: View {
     @State private var reminder = Date()
     @State private var selectedColorName = "Blue" // Store the color name as a string
     @State private var isHabitListActive = false
+    
+    @State private var habitAdded = false
+    @State private var showAlert = false
 
     let habitColors: [String] = ["Blue", "Green", "Red"]
+    
+    
 
     var body: some View {
         NavigationView {
@@ -55,8 +60,13 @@ struct AddHabit: View {
                         // Insert the habit into the database
                         habitDatabase.insertHabit(habit: newHabit)
                         
+                        // Schedule the notification
+                        scheduleNotification()
+                        
                         habitList.habits.append(newHabit)
                         isHabitListActive = true
+                        
+                        showAlert = true
                         
                         print("New Habit Added:")
                         print("Name: \(newHabit.name)")
@@ -69,9 +79,37 @@ struct AddHabit: View {
                 }
             }
             .navigationBarTitle("Add Habit")
+            
         }
+        .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Habit Added"), message: Text("Your new habit has been added."), dismissButton: .default(Text("OK")) {
+                        // Navigate to HabitView after the alert is dismissed
+                        habitAdded = true
+                    })
+                }
+                // Place NavigationLink outside of the Form
+                NavigationLink(destination: HabitView(), isActive: $habitAdded, label: { EmptyView() })
+            .navigationBarBackButtonHidden(true)
     }
 
+    private func scheduleNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Habit Reminder"
+        content.body = "Don't forget to do your habit: \(habitName)"
+        content.sound = .default
+        
+        let calendar = Calendar.current
+        let triggerDateComponents = calendar.dateComponents([.hour, .minute], from: reminder)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: true)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error scheduling notification: \(error)")
+            }
+        }
+    }
     private func getColorFromName(_ name: String) -> Color {
         switch name {
         case "Blue":

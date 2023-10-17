@@ -102,4 +102,11 @@ class HabitDatabase: ObservableObject {
             return "Blue"
         }
     }
+    func deleteAllHabits() {
+        do {
+            try db.run(habits.delete())
+        } catch {
+            fatalError("Error deleting all habits: \(error)")
+        }
+    }
 }

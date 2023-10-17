@@ -75,7 +75,9 @@ struct HabitView: View {
                 NavigationLink("", destination: AddLocationView(), isActive: $showAddLocationView)
 
             }
+            .navigationBarBackButtonHidden(true)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -53,6 +53,7 @@ struct StartView: View {
                 }
                 .opacity(isProceeding ? 0 : 1)
                 .padding()
+                 
             }
             .padding()
         }

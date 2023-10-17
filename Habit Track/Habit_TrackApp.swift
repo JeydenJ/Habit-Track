@@ -23,4 +23,13 @@ struct Habit_TrackApp: App {
                 .environmentObject(habitDatabase)
         }
     }
+    init() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("Notification authorization granted")
+            } else {
+                print("Notification authorization denied")
+            }
+        }
+    }
 }
