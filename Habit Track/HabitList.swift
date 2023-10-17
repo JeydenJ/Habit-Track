@@ -34,95 +34,95 @@ struct HabitListView: View {
     @State private var timer: Timer? //For reminder
     
     func markAsCompleted(for habit: Habit) {
-            if !habit.isCompleted {
-                habitList.habits = habitList.habits.map { existingHabit in
-                    if existingHabit.id == habit.id {
-                        var updatedHabit = existingHabit
-                        updatedHabit.isCompleted = true
-                        return updatedHabit
-                    }
-                    return existingHabit
+        if !habit.isCompleted {
+            habitList.habits = habitList.habits.map { existingHabit in
+                if existingHabit.id == habit.id {
+                    var updatedHabit = existingHabit
+                    updatedHabit.isCompleted = true
+                    return updatedHabit
                 }
-                // Start a timer to periodically check reminder times
-                timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                    checkReminderTimes()
-                }
+                return existingHabit
             }
+            // Start a timer to periodically check reminder times
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                checkReminderTimes()
+            }
+        }
+    }
+    
+    func checkReminderTimes() {
+        // Get the current date and time
+        let currentDate = Date()
+        
+        // Update the UI to reset the color if reminder time has passed
+        habitList.habits = habitList.habits.map { existingHabit in
+            var updatedHabit = existingHabit
+            if currentDate >= existingHabit.reminderTime {
+                updatedHabit.isCompleted = false
+            }
+            return updatedHabit
         }
         
-        func checkReminderTimes() {
-            // Get the current date and time
-            let currentDate = Date()
-            
-            // Update the UI to reset the color if reminder time has passed
-            habitList.habits = habitList.habits.map { existingHabit in
-                var updatedHabit = existingHabit
-                if currentDate >= existingHabit.reminderTime {
-                    updatedHabit.isCompleted = false
-                }
-                return updatedHabit
-            }
-            
-            // Stop the timer when all reminders have passed
-            if habitList.habits.allSatisfy({ $0.isCompleted == false }) {
-                timer?.invalidate()
-                timer = nil
-            }
+        // Stop the timer when all reminders have passed
+        if habitList.habits.allSatisfy({ $0.isCompleted == false }) {
+            timer?.invalidate()
+            timer = nil
         }
-
-        var body: some View {
-            List {
-                ForEach(habitList.habits) { habit in
-                    HStack {
-                        Circle()
-                            .fill(mapColor(habit.color))
-                            .frame(width: 30, height: 30)
-                        
-                        Text(habit.name)
-                            .font(.title)
-                        
-                        Text("Reminder: \(habit.reminderTime, style: .time)")
-                        
-                        Button(action: {
-                            markAsCompleted(for: habit)
-                        }) {
-                            Text("Mark Completed")
-                        }
-                        
-                        if habit.isCompleted {
-                            Image(systemName: "checkmark.circle.fill")
-                        }
-                        
+    }
+    
+    var body: some View {
+        List {
+            ForEach(habitList.habits) { habit in
+                HStack {
+                    Circle()
+                        .fill(mapColor(habit.color))
+                        .frame(width: 30, height: 30)
+                    
+                    Text(habit.name)
+                        .font(.title)
+                    
+                    Text("Reminder: \(habit.reminderTime, style: .time)")
+                    
+                    Button(action: {
+                        markAsCompleted(for: habit)
+                    }) {
+                        Text("Mark Completed")
                     }
                     
-                    .background(habit.isCompleted ? Color.green : Color.white) // Set the background color for the entire HStack
-                }
-                Button(action: {
-                    deleteAlert = true
+                    if habit.isCompleted {
+                        Image(systemName: "checkmark.circle.fill")
+                    }
                     
-                }) {
-                    Text("Delete All Habits")
                 }
+                
+                .background(habit.isCompleted ? Color.green : Color.white) // Set the background color for the entire HStack
             }
-            .alert(isPresented: $deleteAlert) {
-                Alert(
-                    title: Text("Confirm Deletion"),
-                    message: Text("Are you sure you want to delete all habits? This action cannot be undone."),
-                    primaryButton: .destructive(Text("Yes"), action: {
-                        habitDatabase.deleteAllHabits()
-                        habits = habitDatabase.retrieveHabits()
-                        // Update the habitList with retrieved habits
-                        habitList.habits = habits
-                    }),
-                    secondaryButton: .cancel()
-                )
-            }
-            .onAppear {
-                habits = habitDatabase.retrieveHabits()
-                // Update the habitList with retrieved habits
-                habitList.habits = habits
+            Button(action: {
+                deleteAlert = true
+                
+            }) {
+                Text("Delete All Habits")
             }
         }
+        .alert(isPresented: $deleteAlert) {
+            Alert(
+                title: Text("Confirm Deletion"),
+                message: Text("Are you sure you want to delete all habits? This action cannot be undone."),
+                primaryButton: .destructive(Text("Yes"), action: {
+                    habitDatabase.deleteAllHabits()
+                    habits = habitDatabase.retrieveHabits()
+                    // Update the habitList with retrieved habits
+                    habitList.habits = habits
+                }),
+                secondaryButton: .cancel()
+            )
+        }
+        .onAppear {
+            habits = habitDatabase.retrieveHabits()
+            // Update the habitList with retrieved habits
+            habitList.habits = habits
+        }
+    }
 }
 func mapColor(_ colorName: String) -> Color {
     switch colorName {

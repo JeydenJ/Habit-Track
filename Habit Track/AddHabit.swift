@@ -18,28 +18,28 @@ struct AddHabit: View {
     
     @State private var habitAdded = false
     @State private var showAlert = false
-
+    
     let habitColors: [String] = ["Blue", "Green", "Red"]
     
     
-
+    
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Habit Details")) {
                     TextField("Habit Name", text: $habitName)
-
+                    
                     Picker("Frequency", selection: $frequency) {
                         Text("Daily").tag("Daily")
                         Text("Weekly").tag("Weekly")
                         Text("Monthly").tag("Monthly")
                     }
-
+                    
                     DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-
+                    
                     DatePicker("Reminder", selection: $reminder, displayedComponents: .hourAndMinute)
                 }
-
+                
                 Section(header: Text("Select Color")) {
                     Picker("Color", selection: $selectedColorName) {
                         ForEach(habitColors, id: \.self) { colorName in
@@ -47,12 +47,12 @@ struct AddHabit: View {
                         }
                     }
                 }
-
+                
                 // Display the selected color using SwiftUI's Color
                 Circle()
                     .fill(self.getColorFromName(selectedColorName))
                     .frame(width: 44, height: 44)
-
+                
                 Section {
                     Button(action: {
                         let newHabit = Habit(name: habitName, color: selectedColorName, frequency: frequency, reminderTime: reminder, isCompleted: false)
@@ -82,16 +82,16 @@ struct AddHabit: View {
             
         }
         .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Habit Added"), message: Text("Your new habit has been added."), dismissButton: .default(Text("OK")) {
-                        // Navigate to HabitView after the alert is dismissed
-                        habitAdded = true
-                    })
-                }
-                // Place NavigationLink outside of the Form
-                NavigationLink(destination: HabitView(), isActive: $habitAdded, label: { EmptyView() })
+            Alert(title: Text("Habit Added"), message: Text("Your new habit has been added."), dismissButton: .default(Text("OK")) {
+                // Navigate to HabitView after the alert is dismissed
+                habitAdded = true
+            })
+        }
+        // Place NavigationLink outside of the Form
+        NavigationLink(destination: HabitView(), isActive: $habitAdded, label: { EmptyView() })
             .navigationBarBackButtonHidden(true)
     }
-
+    
     private func scheduleNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Habit Reminder"
@@ -101,7 +101,7 @@ struct AddHabit: View {
         let calendar = Calendar.current
         let triggerDateComponents = calendar.dateComponents([.hour, .minute], from: reminder)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: true)
-
+        
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
@@ -122,7 +122,7 @@ struct AddHabit: View {
             return .blue
         }
     }
-
+    
     struct AddHabit_Previews: PreviewProvider {
         static var previews: some View {
             AddHabit()

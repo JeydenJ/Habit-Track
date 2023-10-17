@@ -11,29 +11,29 @@ struct MainView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showHabitView = false 
-        
-        var body: some View {
-            NavigationView {
-                VStack {
-                    Text("Habit Track")
-                        .font(.largeTitle)
-                        .padding()
-                        // Navigate to HabitView when the habits button is pressed
-                    Button(action: {
-                        self.showHabitView = true
-                    }) {
-                        
-                        Text("Habits")
-                            .font(.headline)
-                            .padding()
-                            .background(Color.orange)
-                            .foregroundColor(.white)
-                        .cornerRadius(8)
-                        
-                    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("Habit Track")
+                    .font(.largeTitle)
+                    .padding()
+                // Navigate to HabitView when the habits button is pressed
+                Button(action: {
+                    self.showHabitView = true
+                }) {
                     
-                    NavigationLink("", destination: HabitView(), isActive: $showHabitView)
-                                        .opacity(0)
+                    Text("Habits")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                    
+                }
+                
+                NavigationLink("", destination: HabitView(), isActive: $showHabitView)
+                    .opacity(0)
                 // Logout button
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -50,6 +50,6 @@ struct MainView: View {
                 
             }
         }
-            .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }

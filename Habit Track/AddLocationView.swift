@@ -8,16 +8,16 @@ import SwiftUI
 
 struct AddLocationView: View {
     @State private var selectedLocation: Location? = nil
-
+    
     var body: some View {
         VStack {
             // Display the LocationView for selecting a location
             LocationView(selectedLocation: $selectedLocation)
-
+            
             // Button to save the selected location
             Button(action: {
                 if selectedLocation != nil {
-                   
+                    
                 }
             }) {
                 Text("Save Location")

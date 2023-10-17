@@ -13,7 +13,7 @@ struct HabitView: View {
     @State private var showListHabitView = false
     @State private var showLocationView = false
     @State private var showAddLocationView = false
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -32,7 +32,7 @@ struct HabitView: View {
                         .cornerRadius(8)
                 }
                 NavigationLink("", destination: AddHabit(), isActive: $showAddHabitView)
-
+                
                 // Button to navigate to the HabitListView
                 Button(action: {
                     
@@ -47,7 +47,7 @@ struct HabitView: View {
                         .cornerRadius(8)
                 }
                 NavigationLink("", destination: HabitListView(habitDatabase: habitDatabase), isActive: $showListHabitView)
-
+                
                 // Button to navigate to the LocationView
                 Button(action: {
                     showLocationView = true
@@ -73,11 +73,10 @@ struct HabitView: View {
                         .cornerRadius(8)
                 }
                 NavigationLink("", destination: AddLocationView(), isActive: $showAddLocationView)
-
+                
             }
             .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

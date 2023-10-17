@@ -19,9 +19,9 @@ struct LocationView: View {
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
-
+    
     @State private var annotationItems = [MapMarkerItem(coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194))]
-
+    
     var body: some View {
         Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: annotationItems) { item in
             MapMarker(coordinate: item.coordinate, tint: .blue)

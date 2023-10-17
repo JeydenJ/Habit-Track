@@ -13,7 +13,7 @@ struct StartView: View {
     @State private var userName = ""
     @State private var isProceeding = false
     @State private var nameError: String? // To store the error message
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -53,7 +53,7 @@ struct StartView: View {
                 }
                 .opacity(isProceeding ? 0 : 1)
                 .padding()
-                 
+                
             }
             .padding()
         }

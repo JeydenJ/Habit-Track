@@ -18,21 +18,21 @@ class HabitDatabase: ObservableObject {
     private let frequency = Expression<String>("frequency")
     private let reminderTime = Expression<Date>("reminderTime")
     private let isCompleted = Expression<Bool>("isCompleted")
-
+    
     init() {
-            // Initialize the database connection and create the habits table if it doesn't exist.
-            do {
-                let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                print("SQLite Database Directory: \(documentsDirectory)")
-                let databaseFileURL = documentsDirectory.appendingPathComponent("habits.sqlite")
-                db = try Connection(databaseFileURL.path)
-                
-               createHabitsTable()
-            } catch {
-                fatalError("Error initializing database: \(error)")
-            }
+        // Initialize the database connection and create the habits table if it doesn't exist.
+        do {
+            let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            print("SQLite Database Directory: \(documentsDirectory)")
+            let databaseFileURL = documentsDirectory.appendingPathComponent("habits.sqlite")
+            db = try Connection(databaseFileURL.path)
+            
+            createHabitsTable()
+        } catch {
+            fatalError("Error initializing database: \(error)")
         }
-
+    }
+    
     private func createHabitsTable() {
         Task {
             do {
@@ -53,8 +53,8 @@ class HabitDatabase: ObservableObject {
             }
         }
     }
-
-
+    
+    
     func insertHabit(habit: Habit) {
         do {
             _ = try db.run(habits.insert(
@@ -68,7 +68,7 @@ class HabitDatabase: ObservableObject {
             fatalError("Error inserting habit: \(error)")
         }
     }
-
+    
     func retrieveHabits() -> [Habit] {
         var habitList: [Habit] = []
         do {
@@ -89,7 +89,7 @@ class HabitDatabase: ObservableObject {
         }
         return habitList
     }
-
+    
     private func getColorFromName(_ name: String) -> String {
         switch name {
         case "Blue":
